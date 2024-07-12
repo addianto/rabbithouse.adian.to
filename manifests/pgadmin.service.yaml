@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgadmin-service
+  namespace: pgadmin
+  labels:
+    app.kubernetes.io/name: pgadmin
+    app.kubernetes.io/instance: pgadmin-rabbithouse
+    app.kubernetes.io/managed-by: kubectl
+    app.kubernetes.io/version: "8.8"
+  annotations:
+    metallb.universe.tf/address-pool: homelab
+spec:
+  selector:
+    app.kubernetes.io/name: pgadmin
+    app.kubernetes.io/instance: pgadmin-rabbithouse
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

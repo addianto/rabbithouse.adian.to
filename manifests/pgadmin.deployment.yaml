@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin-deployment
+  namespace: pgadmin
+  labels:
+    app.kubernetes.io/name: pgadmin
+    app.kubernetes.io/instance: pgadmin-rabbithouse
+    app.kubernetes.io/managed-by: kubectl
+    app.kubernetes.io/version: "8.8"
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: pgadmin
+      app.kubernetes.io/instance: pgadmin-rabbithouse
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: pgadmin
+        app.kubernetes.io/instance: pgadmin-rabbithouse
+        app.kubernetes.io/managed-by: kubectl
+        app.kubernetes.io/version: "8.8"
+    spec:
+      containers:
+        - name: pgadmin
+          image: docker.io/dpage/pgadmin4:8.8
+          env:
+            - name: PGADMIN_DEFAULT_EMAIL
+              value: "admin@rabbithouse.adian.to"
+            - name: PGADMIN_DISABLE_POSTFIX
+              value: "yes"
+            - name: PGADMIN_LISTEN_PORT
+              value: "80"
+          envFrom:
+            - secretRef:
+                name: pgadmin-secret
+          ports:
+            - protocol: TCP
+              containerPort: 80
