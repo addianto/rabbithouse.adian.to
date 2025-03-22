@@ -1,0 +1,14 @@
+[project]
+name = "rabbithouse-adian-to"
+version = "0.1.0"
+description = "My homelab k3s-based Kubernetes cluster"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ansible-dev-tools~=25.2.1",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+]
