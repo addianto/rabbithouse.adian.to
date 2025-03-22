@@ -1,0 +1,7 @@
+---
+crds:
+  enabled: true
+  keep: true
+
+replicaCount: 1
+namespace: cert-manager

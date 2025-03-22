@@ -1,0 +1,10 @@
+---
+bootstrapPassword: admin
+hostname: rancher.rabbithouse.adian.to
+replicas: 2
+
+ingress:
+  enabled: false
+  ingressClassName: traefik
+  tls:
+    source: rancher
