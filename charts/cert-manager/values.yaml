@@ -19,5 +19,6 @@ hostAliases:
   hostnames:
   - nutmeg.rabbithouse.adian.to
 
+# TODO (addianto): Figure out how to keep `startupapicheck` enabled on local k3s
 startupapicheck:
   enabled: false
