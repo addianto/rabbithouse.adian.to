@@ -164,3 +164,7 @@ cython_debug/
 
 # Ansible (https://github.com/github/gitignore/blob/main/Global/Ansible.gitignore)
 *.retry
+
+# Project-specific files to ignore
+inventory.yml
+!inventory.yml.gpg
