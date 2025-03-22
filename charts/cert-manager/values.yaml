@@ -5,3 +5,19 @@ crds:
 
 replicaCount: 1
 namespace: cert-manager
+
+hostAliases:
+- ip: 192.168.0.2
+  hostnames:
+  - rabbithouse.adian.to
+  - mocha.rabbithouse.adian.to
+- ip: 192.168.0.3
+  hostnames:
+  - rabbithouse.adian.to
+  - cocoa.rabbithouse.adian.to
+- ip: 192.168.0.4
+  hostnames:
+  - nutmeg.rabbithouse.adian.to
+
+startupapicheck:
+  enabled: false
