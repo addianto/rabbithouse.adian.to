@@ -1,0 +1,17 @@
+[project]
+name = "rabbithouse"
+version = "0.1.0"
+description = "Add your description here"
+readme = { content-type = "text/markdown", file = "README.md" }
+authors = [
+    { name = "Daya Adianto", email = "addianto@users.noreply.github.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "ansible-dev-tools==26.3.1",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit==4.5.1",
+]
