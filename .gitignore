@@ -166,5 +166,5 @@ cython_debug/
 *.retry
 
 # Project-specific
-inventory.yml
+.vault-password-file
 !inventory-sample.yml
