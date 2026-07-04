@@ -1,0 +1,8 @@
+---
+- name: Harden server
+  hosts: all
+  collections:
+    - devsec.hardening
+  roles:
+    - devsec.hardening_os_hardening
+    - devsec.hardening_ssh_hardening
