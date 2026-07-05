@@ -1,4 +1,4 @@
-# Rabbit House
+# Rabbit House Homelab
 
 IP allocation:
 

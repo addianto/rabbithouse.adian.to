@@ -25,3 +25,19 @@
     ssh_permit_root_login: "no"
     ssh_server_ports:
       - "22"
+
+- name: Install NGINX
+  hosts: all
+  roles:
+    - nginxinc.nginx
+  vars:
+    nginx_type: opensource
+    nginx_install_from: nginx_repository
+    nginx_branch: stable
+
+- name: Harden NGINX
+  hosts: all
+  collections:
+    - devsec.hardening
+  roles:
+    - devsec.hardening.nginx_hardening
