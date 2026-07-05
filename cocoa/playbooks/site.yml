@@ -37,3 +37,5 @@
     # One of the step included openssl dhparam that really take a while.
     # It is recommended to create the dhparam file manually on a powerful PC and then upload it to the Raspberry Pi
     - devsec.hardening.nginx_hardening
+  vars:
+    nginx_dh_size: 4096
