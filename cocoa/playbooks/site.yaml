@@ -1,10 +1,19 @@
 ---
+- name: Set up administrator user and minimum system packages
+  hosts: all
+  roles:
+    - common
+
 - name: Harden OS
   hosts: all
   collections:
     - devsec.hardening
   roles:
     - devsec.hardening.os_hardening
+  vars:
+    sysctl_overwrite:
+      # Default value on DietPi that runs on Raspberry Pi 3 B+
+      vm.mmap_rnd_bits: 18
 
 - name: Harden SSH
   hosts: all
@@ -13,6 +22,6 @@
   roles:
     - devsec.hardening.ssh_hardening
   vars:
-    ssh_permit_root_login: no
+    ssh_permit_root_login: "no"
     ssh_server_ports:
       - "22"

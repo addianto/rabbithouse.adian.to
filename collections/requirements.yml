@@ -1,5 +1,9 @@
 ---
 collections:
+  - name: ansible.posix
+    version: 2.2.1
+  - name: community.general
+    version: 13.1.0
   - name: devsec.hardening
     version: 10.6.0
   - name: https://github.com/k3s-io/k3s-ansible.git

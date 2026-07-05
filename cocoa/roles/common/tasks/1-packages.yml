@@ -1,0 +1,10 @@
+---
+- name: Install system packages
+  ansible.builtin.apt:
+    name:
+      - curl
+      - git
+      - python3-apt
+    install_recommends: false
+    update_cache: true
+    state: present
