@@ -6,8 +6,6 @@
 
 - name: Harden OS
   hosts: all
-  collections:
-    - devsec.hardening
   roles:
     - devsec.hardening.os_hardening
   vars:
@@ -17,8 +15,6 @@
 
 - name: Harden SSH
   hosts: all
-  collections:
-    - devsec.hardening
   roles:
     - devsec.hardening.ssh_hardening
   vars:
@@ -37,7 +33,5 @@
 
 - name: Harden NGINX
   hosts: all
-  collections:
-    - devsec.hardening
   roles:
     - devsec.hardening.nginx_hardening

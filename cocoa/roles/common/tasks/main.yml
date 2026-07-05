@@ -1,3 +1,5 @@
 ---
-- ansible.builtin.import_tasks: 1-packages.yml
-- ansible.builtin.import_tasks: 2-users.yml
+- name: Install system packages
+  ansible.builtin.import_tasks: 1-packages.yml
+- name: Add non-root administrator user
+  ansible.builtin.import_tasks: 2-users.yml

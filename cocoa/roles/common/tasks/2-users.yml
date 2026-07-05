@@ -1,9 +1,9 @@
 ---
 - name: Create default, non-root administrator user
   ansible.builtin.user:
-    name: "{{ user_username }}"
+    name: "{{ common_username }}"
     password: "!" # Use public SSH key authentication
-    create_home: yes
+    create_home: true
     shell: /bin/bash
     groups:
       - adm
@@ -12,13 +12,13 @@
     state: present
 - name: Add SSH public key to the administrator user
   ansible.posix.authorized_key:
-    user: "{{ user_username }}"
-    key: "{{ user_public_key }}"
+    user: "{{ common_username }}"
+    key: "{{ common_public_key }}"
     state: present
 - name: Grant passwordless sudo to the administrator user
   community.general.sudoers:
     name: admin
-    user: "{{ user_username }}"
+    user: "{{ common_username }}"
     nopassword: true
     commands: ALL
     state: present
