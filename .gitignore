@@ -163,6 +163,7 @@ cython_debug/
 #.idea/
 
 # Ansible (https://github.com/github/gitignore/blob/main/Global/Ansible.gitignore)
+.ansible/
 *.retry
 
 # Project-specific

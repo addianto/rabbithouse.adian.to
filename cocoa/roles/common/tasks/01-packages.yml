@@ -4,6 +4,7 @@
     name:
       - curl
       - git
+      - neovim
       - python3-apt
     install_recommends: false
     update_cache: true
