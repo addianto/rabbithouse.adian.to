@@ -23,22 +23,9 @@
       - "22"
 
 - name: Install NGINX
-  hosts: all
-  roles:
-    - nginxinc.nginx
-  vars:
-    nginx_type: opensource
-    nginx_install_from: nginx_repository
-    nginx_branch: stable
-
-- name: Harden NGINX
-  hosts: all
-  roles:
-    # One of the step included openssl dhparam that really take a while.
-    # It is recommended to create the dhparam file manually on a powerful PC and then upload it to the Raspberry Pi
-    - devsec.hardening.nginx_hardening
-  vars:
-    nginx_dh_size: 4096
+  tags: nginx
+  import_playbook: 01-nginx.yml
 
 - name: Install Valkey
-  import_playbook: 01-valkey.yml
+  tags: valkey
+  import_playbook: 02-valkey.yml
