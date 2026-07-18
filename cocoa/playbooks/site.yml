@@ -39,3 +39,6 @@
     - devsec.hardening.nginx_hardening
   vars:
     nginx_dh_size: 4096
+
+- name: Install Valkey
+  import_playbook: 01-valkey.yml

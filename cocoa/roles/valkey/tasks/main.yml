@@ -6,3 +6,10 @@
     install_recommends: false
     update_cache: true
     state: present
+
+- name: Configure Valkey to use custom configuration files
+  ansible.builtin.lineinfile:
+    path: /etc/valkey/valkey.conf
+    line: 'include /etc/valkey/conf.d/*.conf'
+    state: present
+  notify: Restart Valkey
