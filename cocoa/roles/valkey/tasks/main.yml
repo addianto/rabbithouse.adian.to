@@ -5,6 +5,7 @@
       - valkey
     install_recommends: false
     update_cache: true
+    cache_valid_time: 3600
     state: present
 
 - name: Configure Valkey to use custom configuration files
@@ -13,3 +14,26 @@
     line: 'include /etc/valkey/conf.d/*.conf'
     state: present
   notify: Restart Valkey
+
+- name: Ensure Valkey custom configuration directory exists
+  ansible.builtin.file:
+    path: /etc/valkey/conf.d
+    state: directory
+    owner: valkey
+    group: valkey
+    mode: '2750'
+
+- name: Copy custom Valkey configuration
+  ansible.builtin.copy:
+    src: 00-custom.conf
+    dest: /etc/valkey/conf.d/00-custom.conf
+    owner: valkey
+    group: valkey
+    mode: '0640'
+  notify: Restart Valkey
+
+- name: Run Valkey as service
+  ansible.builtin.service:
+    name: valkey
+    state: started
+    enabled: true
