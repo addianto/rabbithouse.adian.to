@@ -2,7 +2,12 @@
 - name: Install NGINX
   hosts: web
   roles:
-    - nginxinc.nginx
+    - role: nginxinc.nginx
+    - role: firewall
+      vars:
+        firewall_custom_rules:
+          - '80'
+          - '443'
   vars:
     nginx_type: opensource
     nginx_install_from: nginx_repository
