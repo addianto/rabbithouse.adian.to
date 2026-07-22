@@ -1,0 +1,5 @@
+---
+valkey_bind_address: "{{ ansible_host | default(ansible_default_ipv4.address | default('127.0.0.1')) }}"
+valkey_port: 6379
+valkey_timeout: 300
+valkey_protected_mode: "yes"

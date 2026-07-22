@@ -23,9 +23,9 @@
     group: valkey
     mode: '2750'
 
-- name: Copy custom Valkey configuration
-  ansible.builtin.copy:
-    src: 00-custom.conf
+- name: Deploy custom Valkey configuration
+  ansible.builtin.template:
+    src: 00-custom.conf.j2
     dest: /etc/valkey/conf.d/00-custom.conf
     owner: valkey
     group: valkey
