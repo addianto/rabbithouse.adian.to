@@ -1,4 +1,4 @@
-bind {{ valkey_bind_address }} 127.0.0.1
+bind {{ valkey_bind_address }}{% if valkey_bind_address != '127.0.0.1' %} 127.0.0.1{% endif %}
 protected-mode {{ valkey_protected_mode }}
 port {{ valkey_port }}
 timeout {{ valkey_timeout }}
