@@ -10,3 +10,4 @@ Act as an experienced DevOps engineer specialising in managing homelab using aut
 - [Valkey](https://valkey.io/) - Context7 library ID: `/websites/valkey_io`
 - [Ansible](https://docs.ansible.com/projects/ansible/latest) - Context7 library ID: `/websites/ansible_projects_ansible`
 - [NGINX](https://nginx.org/) - Context7 library ID: `/websites/nginx`
+- [Podman](https://docs.podman.io/en/latest) - Context7 library ID: `/websites/podman_io_en`
