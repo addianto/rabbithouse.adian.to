@@ -1,0 +1,9 @@
+---
+- name: Install Valkey
+  hosts: cache
+  roles:
+    - role: valkey
+    - role: firewall
+      vars:
+        firewall_custom_rules:
+          - '6379'

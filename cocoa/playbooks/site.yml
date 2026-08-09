@@ -1,0 +1,37 @@
+---
+- name: Set up administrator user and minimum system packages
+  hosts: all
+  roles:
+    - common
+
+- name: Harden OS
+  hosts: all
+  roles:
+    - devsec.hardening.os_hardening
+  vars:
+    sysctl_overwrite:
+      # Default value on DietPi that runs on Raspberry Pi 3 B+
+      vm.mmap_rnd_bits: 18
+      # Preserve IPv4 forwarding for Podman container routing
+      net.ipv4.ip_forward: 1
+
+- name: Harden SSH
+  hosts: all
+  roles:
+    - devsec.hardening.ssh_hardening
+  vars:
+    ssh_permit_root_login: "no"
+    ssh_server_ports:
+      - "22"
+
+- name: Install NGINX
+  tags: nginx
+  import_playbook: 01-nginx.yml
+
+- name: Install Valkey
+  tags: valkey
+  import_playbook: 02-valkey.yml
+
+- name: Install Podman
+  tags: podman
+  import_playbook: 03-podman.yml

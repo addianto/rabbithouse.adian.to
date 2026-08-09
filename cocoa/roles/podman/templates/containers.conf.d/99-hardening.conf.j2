@@ -1,0 +1,19 @@
+# Managed by Ansible
+
+[containers]
+# Prevent privilege escalation via setuid/setgid binaries inside containers
+no_new_privs = true
+
+# Restrict default capabilities granted to rootful containers
+default_capabilities = [
+  "CAP_CHOWN",
+  "CAP_DAC_OVERRIDE",
+  "CAP_FOWNER",
+  "CAP_KILL",
+  "CAP_NET_BIND_SERVICE",
+  "CAP_SETGID",
+  "CAP_SETUID"
+]
+
+# Enforce systemd journald logging for container stdout/stderr
+log_driver = "journald"

@@ -1,0 +1,61 @@
+---
+- name: Install Podman package
+  ansible.builtin.apt:
+    name: "{{ podman_packages }}"
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Ensure global systemd Quadlet configuration directory exists
+  ansible.builtin.file:
+    path: /etc/containers/systemd
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Ensure containers.conf.d drop-in directory exists
+  ansible.builtin.file:
+    path: /etc/containers/containers.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Deploy Podman hardening drop-in configuration
+  ansible.builtin.template:
+    src: containers.conf.d/99-hardening.conf.j2
+    dest: /etc/containers/containers.conf.d/99-hardening.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Ensure registries.conf.d drop-in directory exists
+  ansible.builtin.file:
+    path: /etc/containers/registries.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Deploy image registry security drop-in configuration
+  ansible.builtin.template:
+    src: registries.conf.d/99-security.conf.j2
+    dest: /etc/containers/registries.conf.d/99-security.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Allow UFW routed traffic for Podman bridge interface (inbound)
+  community.general.ufw:
+    rule: allow
+    direction: in
+    interface: "{{ podman_bridge_interface }}"
+    route: true
+
+- name: Allow UFW routed traffic for Podman bridge interface (outbound)
+  community.general.ufw:
+    rule: allow
+    direction: out
+    interface: "{{ podman_bridge_interface }}"
+    route: true

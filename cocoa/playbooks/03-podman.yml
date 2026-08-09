@@ -1,0 +1,5 @@
+---
+- name: Install Podman
+  hosts: containers
+  roles:
+    - role: podman
