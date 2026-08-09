@@ -14,6 +14,38 @@
     group: root
     mode: '0755'
 
+- name: Ensure containers.conf.d drop-in directory exists
+  ansible.builtin.file:
+    path: /etc/containers/containers.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Deploy Podman hardening drop-in configuration
+  ansible.builtin.template:
+    src: containers.conf.d/99-hardening.conf.j2
+    dest: /etc/containers/containers.conf.d/99-hardening.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Ensure registries.conf.d drop-in directory exists
+  ansible.builtin.file:
+    path: /etc/containers/registries.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Deploy image registry security drop-in configuration
+  ansible.builtin.template:
+    src: registries.conf.d/99-security.conf.j2
+    dest: /etc/containers/registries.conf.d/99-security.conf
+    owner: root
+    group: root
+    mode: '0644'
+
 - name: Allow UFW routed traffic for Podman bridge interface (inbound)
   community.general.ufw:
     rule: allow
