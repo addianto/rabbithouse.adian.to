@@ -1,4 +1,7 @@
 bind {{ valkey_bind_address }}{% if valkey_bind_address != '127.0.0.1' %} 127.0.0.1{% endif %}
+
+# This empty line is intentional. Keep it to avoid syntax error when Valkey read the configuration.
+
 protected-mode {{ valkey_protected_mode }}
 port {{ valkey_port }}
 timeout {{ valkey_timeout }}
